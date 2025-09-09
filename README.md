@@ -47,8 +47,6 @@ A **feature-rich calculator** project with **Basic**, **Scientific**, and **Grap
 ### Graphing Calculator
 ![Graphing Calculator](screenshots/graph.png)
 
-> *Note: Add actual screenshots in a `screenshots` folder.*
-
 ---
 
 ## Installation
