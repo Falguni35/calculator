@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Added Chart.js library for graphing functionality -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="calculator-selector">
+            <button id="basicBtn" class="selector-btn active">Basic Calculator</button>
+            <button id="scientificBtn" class="selector-btn">Scientific Calculator</button>
+            <!-- Added Graph Calculator button -->
+            <button id="graphBtn" class="selector-btn">Graph Calculator</button>
+        </div>
+        <!-- Basic Calculator -->
+        <div id="basicCalculator" class="calculator basic-calculator">
+            <div class="display">
+                <div class="current" id="basicDisplay">0</div>
+            </div>
+            <div class="buttons">
+                <button class="btn function" onclick="basicCalculator.clear()">C</button>
+                <button class="btn function" onclick="basicCalculator.backspace()">⌫</button>
+                <button class="btn function" onclick="basicCalculator.inputOpenParenthesis('(')">(</button>
+                <button class="btn function" onclick="basicCalculator.inputCloseParenthesis(')')">)</button>
+                <button class="btn function" onclick="basicCalculator.percentage()">%</button>
+                <button class="btn operator" onclick="basicCalculator.inputOperator('÷')">÷</button>
+                <button class="btn operator" onclick="basicCalculator.inputOperator('×')">×</button>
+                <button class="btn operator" onclick="basicCalculator.inputOperator('-')">-</button>
+                <button class="btn number" onclick="basicCalculator.inputNumber('7')">7</button>
+                <button class="btn number" onclick="basicCalculator.inputNumber('8')">8</button>
+                <button class="btn number" onclick="basicCalculator.inputNumber('9')">9</button>
+                <button class="btn operator" onclick="basicCalculator.inputOperator('+')">+</button>
+                <button class="btn number" onclick="basicCalculator.inputNumber('4')">4</button>
+                <button class="btn number" onclick="basicCalculator.inputNumber('5')">5</button>
+                <button class="btn number" onclick="basicCalculator.inputNumber('6')">6</button>
+                <button class="btn function" onclick="basicCalculator.toggleSign()">+/-</button>
+                <button class="btn number" onclick="basicCalculator.inputNumber('1')">1</button>
+                <button class="btn number" onclick="basicCalculator.inputNumber('2')">2</button>
+                <button class="btn number" onclick="basicCalculator.inputNumber('3')">3</button>
+                <button class="btn function" onclick="basicCalculator.inputDecimal()">.</button>
+                <button class="btn number" onclick="basicCalculator.inputNumber('0')" style="grid-column: span 2;">0</button>
+                <button class="btn equals" onclick="basicCalculator.calculate()" style="grid-column: span 2;">=</button>
+            </div>
+        </div>
+        <!-- Scientific Calculator -->
+        <div id="scientificCalculator" class="calculator scientific-calculator" style="display: none;">
+            <div class="display">
+                <div class="current" id="scientificDisplay">0</div>
+            </div>
+            <div class="buttons scientific-buttons">
+                <!-- Row 1 -->
+                <button class="btn function" onclick="scientificCalculator.clear()">C</button>
+                <button class="btn function" onclick="scientificCalculator.backspace()">⌫</button>
+                <button class="btn function" onclick="scientificCalculator.inputOpenParenthesis('(')">(</button>
+                <button class="btn function" onclick="scientificCalculator.inputCloseParenthesis(')')">)</button>
+                <!-- Row 2 -->
+                <button class="btn function" onclick="scientificCalculator.inputFunction('sin(')">sin</button>
+                <button class="btn function" onclick="scientificCalculator.inputFunction('cos(')">cos</button>
+                <button class="btn function" onclick="scientificCalculator.inputFunction('tan(')">tan</button>
+                <button class="btn operator" onclick="scientificCalculator.inputOperator('÷')">÷</button>
+                <!-- Row 3 -->
+                <button class="btn function" onclick="scientificCalculator.inputFunction('ln(')">ln</button>
+                <button class="btn function" onclick="scientificCalculator.inputFunction('log(')">log</button>
+                <button class="btn function" onclick="scientificCalculator.inputOperator('^(-1)')">1/x</button>
+                <button class="btn operator" onclick="scientificCalculator.inputOperator('×')">×</button>
+                <!-- Row 4 -->
+                <button class="btn function" onclick="scientificCalculator.inputFunction('exp(')">e^x</button>
+                <button class="btn function" onclick="scientificCalculator.inputOperator('^2')">x<sup>2</sup></button>
+                <button class="btn function" onclick="scientificCalculator.inputOperator('^')">x^y</button>
+                <button class="btn operator" onclick="scientificCalculator.inputOperator('-')">-</button>
+                <!-- Row 5 -->
+                <button class="btn function" onclick="scientificCalculator.inputFunction('abs(')">|x|</button>
+                <button class="btn function" onclick="scientificCalculator.inputNumber('π')">π</button>
+                <button class="btn function" onclick="scientificCalculator.inputNumber('e')">e</button>
+                <button class="btn operator" onclick="scientificCalculator.inputOperator('+')">+</button>
+                <!-- Row 6 -->
+                <button class="btn number" onclick="scientificCalculator.inputNumber('7')">7</button>
+                <button class="btn number" onclick="scientificCalculator.inputNumber('8')">8</button>
+                <button class="btn number" onclick="scientificCalculator.inputNumber('9')">9</button>
+                <button class="btn function" onclick="scientificCalculator.percentage()">%</button>
+                <!-- Row 7 -->
+                <button class="btn number" onclick="scientificCalculator.inputNumber('4')">4</button>
+                <button class="btn number" onclick="scientificCalculator.inputNumber('5')">5</button>
+                <button class="btn number" onclick="scientificCalculator.inputNumber('6')">6</button>
+                <button class="btn function" onclick="scientificCalculator.toggleSign()">+/-</button>
+                <!-- Row 8 -->
+                <button class="btn number" onclick="scientificCalculator.inputNumber('1')">1</button>
+                <button class="btn number" onclick="scientificCalculator.inputNumber('2')">2</button>
+                <button class="btn number" onclick="scientificCalculator.inputNumber('3')">3</button>
+                <button class="btn function" onclick="scientificCalculator.inputDecimal()">.</button>
+                <!-- Row 9 -->
+                <button class="btn number" onclick="scientificCalculator.inputNumber('0')" style="grid-column: span 2;">0</button>
+                <button class="btn equals" onclick="scientificCalculator.calculate()" style="grid-column: span 2;">=</button>
+            </div>
+        </div>
+        <!-- Graph Calculator -->
+<div id="graphCalculator" class="calculator graph-calculator" style="display: none;">
+    <div id="equationInputs">
+    <div class="equation-input">
+        <input type="text" id="equation1" class="equation-field" placeholder="e.g., x^2 + 2*x - 1">
+        <input type="color" id="color1" value="#ff6384" class="color-picker">
+    </div>
+</div>
+
+
+    <button id="addEquationBtn" class="btn add-equation" onclick="graphCalculator.addEquation()">Add Another Equation</button>
+
+    <div class="graph-settings">
+        <div class="range-inputs">
+            <label>X Range:</label>
+            <input type="number" id="xMin" value="-10" placeholder="Min" class="range-input">
+            <input type="number" id="xMax" value="10" placeholder="Max" class="range-input">
+        </div>
+        <div class="range-inputs">
+            <label>Y Range:</label>
+            <input type="number" id="yMin" value="-10" placeholder="Min" class="range-input">
+            <input type="number" id="yMax" value="10" placeholder="Max" class="range-input">
+        </div>
+    </div>
+
+    <button class="btn generate-graph" onclick="graphCalculator.generateGraph()">Generate Graph</button>
+    <button class="btn clear-graph" onclick="graphCalculator.clearGraph()">Clear Graph</button>
+
+    <div class="graph-container">
+        <canvas id="graphCanvas"></canvas>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
